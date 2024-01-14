@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+::-webkit-scrollbar{
+    display: none;
+}
+
+.cont{
+    @apply sm:px-4 sm:py-6 lg:max-w-[90%] lg:px-4;
+}
