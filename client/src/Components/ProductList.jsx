@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Ratings from "./ratings";
+import Ratings from "../Components/Ratings";
 import { MdCurrencyRupee } from "react-icons/md";
 import AddToCartButton from "./AddToCartButton";
 import Pagination from "./Pagination";
