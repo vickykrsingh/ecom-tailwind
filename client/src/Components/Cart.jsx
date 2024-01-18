@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {AmountToPay, totalCartValue, totalShippingCharge, totalTaxes} from '../lib/handleCart'
 import { addCartItem, removeCartItem } from "../redux/slices/cartSlice";
+import toast from "react-hot-toast";
 
 
 function Cart() {
@@ -9,6 +10,9 @@ function Cart() {
   const dispatch = useDispatch()
   const removeQuantityFromCart = (product) => {
     dispatch(removeCartItem(product))
+    toast('removed !', {
+      icon: '😞'
+    });
   }
   const addQuantityToCart = (product) => {
     dispatch(addCartItem(product))

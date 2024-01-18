@@ -4,6 +4,7 @@ import { products } from "../../public/data";
 import { useDispatch, useSelector } from "react-redux";
 import { setProduct } from "../redux/slices/productSlice";
 
+
 const price = [
   {
     label: "0-99",
@@ -43,15 +44,16 @@ function FilterProduct() {
     range: 0,
   });
   const dispatch = useDispatch()
+  const pageDetail = useSelector((state)=>state.pageReducer)
 
   const getFilteredProducts = () => {
     if(filtered.category.length>0 || filtered.range>0){
       if(filtered.category.length>0&&filtered.range>0){
-        dispatch(setProduct({category:filtered.category,price:filtered.range}))
+        dispatch(setProduct({category:filtered.category,price:filtered.range,start:pageDetail.start,end:pageDetail.end}))
       }else if(filtered.category.length>0){
-        dispatch(setProduct({category:filtered.category}))
+        dispatch(setProduct({category:filtered.category,start:pageDetail.start,end:pageDetail.end}))
       }else if(filtered.range>0){
-        dispatch(setProduct({price:Number(filtered.range)}))
+        dispatch(setProduct({price:Number(filtered.range),start:pageDetail.start,end:pageDetail.end}))
       }
       else{
         throw new Error("Something went wrong on client side")

@@ -1,7 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { MdOutlineSearch } from "react-icons/md";
+import { useDispatch } from "react-redux";
+import { searchByKeyword } from "../redux/slices/productSlice";
 
 function Search() {
+  const [text, setText] = useState("");
+  const dispatch = useDispatch();
+  const handleOnSubmit = (e) => {
+    e.preventDefault();
+    dispatch(searchByKeyword(text));
+  };
   return (
     <>
       {/* You can open the modal using document.getElementById('ID').showModal() method */}
@@ -23,9 +31,16 @@ function Search() {
                   type="text"
                   placeholder="Type here"
                   className="input input-bordered w-full max-w-xs"
+                  onChange={(e) => setText((prev) => (prev = e.target.value))}
+                  value={text}
+                  required
                 />
               </label>
-              <button type="submit" className="btn btn-neutral">
+              <button
+                onClick={(e) => handleOnSubmit(e)}
+                type="submit"
+                className="btn btn-neutral"
+              >
                 Search
               </button>
             </form>
